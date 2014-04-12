@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+	<title>Checkout</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+   
+<body style="background-color:#2E2E2E">
+	<h:graphicImage url="/images/Logo.png"/>
+		<h:form>
+			<div class="distanceBox">
+				<h:panelGrid columns="1" style="background-color:#F5F3F3" border="1" cellpadding="5" cellspacing="5">
+					<h:panelGrid columns= "4" style="background-color:#F5F3F3" border="0" cellpadding="5" cellspacing="0" class="alignmentCenter">
+					
+						<f:facet name="header"><h:graphicImage url="/images/checkout.JPG"/></f:facet>
+						
+						<h:inputText value = "#{customer.firstName}" id="firstName" style="width: 200px; height: 20px"/>
+						<h:message class="error" for="firstName"/>
+						
+						<h:inputText value ="#{customer.lastName}" id="lastName" style="width: 200px; height: 20px"/>
+						<h:message class="error" for="lastName"/>
+						
+						<h:inputText value ="#{customer.postcode}" id="postcode" style="width: 200px; height: 20px"/>
+						<h:message class="error" for="postcode"/>
+						
+						<h:inputText value = "#{customer.city}" id="city" style="width: 200px; height: 20px"/>
+						<h:message class="error" for="city"/>
+						
+						<h:inputText value = "#{customer.street}" id="street" style="width: 200px; height: 20px"/>
+						<h:message class="error" for="street"/>
+						<h:outputText/>
+						<h:outputText/>
+						
+						
+						<h:outputText style="font-weight:bold; font-size:25px; font-color:#000000" value="Zahlungsart"/>
+						<h:outputText/>
+						<h:outputText style="font-weight:bold; font-size:25px; font-style:italic; font-color:#000000" value="Kreditkarte"/>
+						<h:outputText/>
+						
+						
+						<h:inputText value = "#{customer.creditCardNumber}" id="creditCardNumber" style="width: 200px; height: 20px"/>
+						<h:message class="error" for="creditCardNumber"/>
+						
+						<h:outputText/>
+						<h:outputText/>
+						
+						<h:outputText style="font-weight:bold; font-size:20px; font-color:#000000" value="Gültig bis:"/>
+						<h:outputText/>
+						
+						<h:panelGroup>
+						<h:selectOneMenu id="months"
+						  value="#{customer.validThroughMonth}">
+						  <f:selectItem
+						    itemValue="january" itemLabel="Januar"/>
+						  <f:selectItem 
+						    itemValue="february" itemLabel="Februar"/>
+						  <f:selectItem 
+						    itemValue="march" itemLabel="M&auml;rz"/>
+						  <f:selectItem 
+						    itemValue="april" itemLabel="April"/>
+						  <f:selectItem 
+						    itemValue="may" itemLabel="Mai"/>
+						  <f:selectItem 
+						    itemValue="june" itemLabel="Juni"/>
+						  <f:selectItem 
+						    itemValue="july" itemLabel="Juli"/>
+						  <f:selectItem 
+						    itemValue="august" itemLabel="August"/>
+						  <f:selectItem 
+						    itemValue="september" itemLabel="September"/>
+						  <f:selectItem 
+						    itemValue="october" itemLabel="Oktober"/>
+						  <f:selectItem 
+						    itemValue="november" itemLabel="November"/>
+						  <f:selectItem 
+						    itemValue="december" itemLabel="Dezember"/>
+						</h:selectOneMenu>
+						<h:selectOneMenu id="years"
+						  value="#{customer.validThroughYear}">
+						  <f:selectItem
+						    itemValue="2013" itemLabel="2013"/>
+						  <f:selectItem 
+						    itemValue="2014" itemLabel="2014"/>
+						  <f:selectItem 
+						    itemValue="2015" itemLabel="2015"/>
+						  <f:selectItem 
+						    itemValue="2016" itemLabel="2016"/>
+						  <f:selectItem 
+						    itemValue="2017" itemLabel="2017"/>
+						  <f:selectItem 
+						    itemValue="2018" itemLabel="2018"/>
+						  <f:selectItem 
+						    itemValue="2019" itemLabel="2019"/>
+						  <f:selectItem 
+						    itemValue="2020" itemLabel="2020"/>
+						  <f:selectItem 
+						    itemValue="2021" itemLabel="2021"/>
+						  <f:selectItem 
+						    itemValue="2022" itemLabel="2022"/>
+						  <f:selectItem 
+						    itemValue="2023" itemLabel="2023"/>
+						  <f:selectItem 
+						    itemValue="2024" itemLabel="2024"/>
+						</h:selectOneMenu>
+						</h:panelGroup>
+						
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText/>
+						
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText/>
+										
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText/>
+						<h:commandButton action="#{checkoutHandler.orderButton}" value="Bestellen" style="width: 80px; margin: 20px 4px 4px 4px; background-color: #2E2E2E; color: #F5F3F3"/>
+						
+						
+					</h:panelGrid>
+				</h:panelGrid>
+			</div>
+	   	</h:form>
+</body>
+</html>

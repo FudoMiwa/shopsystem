@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+	<title>shoppingcart</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+<div class="alles">
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Kopfzeile Logo............................................................... -->
+
+
+	<div id="header">
+		<h:graphicImage url="/images/Logo.png"/>
+	</div>
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Kopfzeile Buttons............................................................ -->
+
+
+	<div id="kopfzeile">
+		<h:form>
+			<p>		
+				<h:commandButton style="padding-left: 50px" image="/images/homebutton.png" action="#{mainpageHandler.homeButton}" immediate="true"/>
+				<h:commandButton style="padding-left: 1000px" image="/images/warenkorb.png"  action="#{mainpageHandler.shoppingCartButton}" immediate="true"/>
+				#{mainpageHandler.totalCartSize} Artikel im Warenkorb
+			</p>
+		</h:form>
+	</div>
+
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Menue Kategorien............................................................. -->
+
+
+<div id="menu">
+	<ul>
+	<li><h2>Kategorie</h2></li>
+	<li>&nbsp;</li>
+	</ul>
+
+
+	<div class="textbox">
+		<h:form>
+			<ul>
+				<li><h:commandLink value="Historische Romane" action="#{mainpageHandler.categoryLink('historischer roman')}" /></li>
+				<li><h:commandLink value="Fachbücher" action="#{mainpageHandler.categoryLink('fachbuch')}"/></li>
+				<li><h:commandLink value="Krimis" action="#{mainpageHandler.categoryLink('krimi')}"/></li>
+				<li><h:commandLink value="Science Fiction" action="#{mainpageHandler.categoryLink('science fiction')}"/></li>
+			</ul>
+		</h:form>
+	</div>
+</div>
+
+
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Einkaufswagen................................................................ -->
+
+	
+	<h:outputLabel style="font-size: 20pt; font-weight:bold; padding-left: 650px">Einkaufswagen</h:outputLabel>
+	<br/><br/>
+	<div>
+		<h:form>
+			<h:panelGrid columns= "4"  border="1" cellpadding="5" cellspacing="0" columnClasses="tableWidth" >
+					<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+					   	<h:outputText style="font-size:15px; font-weight:bold" value="Artikel"/>
+					</h:panelGrid>	
+					<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+					   	<h:outputText style="font-size:15px; font-weight:bold" value=""/>
+					</h:panelGrid>
+					<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+					   	<h:outputText style="font-size:15px; font-weight:bold" value="Preis"/>	
+					</h:panelGrid>
+					<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+					   	<h:outputText style="font-size:15px; font-weight:bold" value="Menge"/>
+					</h:panelGrid>
+			</h:panelGrid>	
+				
+			<h:panelGrid columns= "1"  border="1" cellpadding="5" cellspacing="0">		   	
+				<ui:repeat value="#{shoppingCartHandler.cartContent}" var="cart">		
+				   	<h:panelGrid columns= "4"  border="0" cellpadding="5" cellspacing="0" columnClasses="tableWidth" >	
+				   			
+				   			<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+					   			<h:graphicImage url="#{cart.book.pictureURL}"/>
+							</h:panelGrid>
+							
+				   			<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">
+									<f:facet name ="header"> #{cart.book.title} </f:facet>
+									<h:outputText style="font-size: 12px" value="von #{cart.book.author}"/>
+									<h:commandLink value="Löschen" action="#{shoppingCartHandler.deleteItemLink}"/>
+				   			</h:panelGrid>
+							
+							<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">	
+								<h:outputText value="EUR #{cart.book.cost}"/>
+					   		</h:panelGrid>	
+							
+							<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">					
+								<h:inputText value="#{cart.quantity}"/>
+								<h:commandLink value="Aktualisieren" action="#{shoppingCartHandler.updateLink}"/>
+							</h:panelGrid>			
+					</h:panelGrid>		
+				</ui:repeat> 
+			</h:panelGrid> 
+			
+			
+			<h:panelGrid columns= "4"  border="0" cellpadding="5" cellspacing="0" columnClasses="tableWidth" >
+				<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+				   	<h:outputText style="font-size:15px; font-weight:bold" value=""/>
+				</h:panelGrid>	
+				<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+				   	<h:outputText style="font-size:15px; font-weight:bold" value="Gesamtpreis:"/>
+				</h:panelGrid>
+				<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+				   	<h:outputText style="font-size:15px; font-weight:bold" value="#{shoppingCartHandler.totalCost}">
+				   		     <f:convertNumber currencySymbol="EUR" groupingUsed="true" maxFractionDigits="2" type="currency" />
+				   	</h:outputText>	
+				</h:panelGrid>
+				<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+				   	<h:commandButton style="padding-right: 10px" image="/images/cashpoint.png" action="#{shoppingCartHandler.checkoutButton}"/>	
+				</h:panelGrid>
+			</h:panelGrid>
+			 				
+		</h:form>
+	</div>
+ 
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Fußzeile..................................................................... -->
+
+
+	<div id="fuss">
+		<a href="#">Impressum</a> ::: <a href="#">Kontakt</a> ::: <a href="#">Home</a> ::: <a href="#">Sitemap</a>
+	</div>
+
+</div>
+</body>
+</html>

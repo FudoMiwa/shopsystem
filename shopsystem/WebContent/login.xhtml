@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+	<title>LogIn</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+   
+<body style="background-color:#2E2E2E">
+	<h:graphicImage url="/images/Logo.png"/>
+		<h:form>
+			<div class="distanceBox">
+				<h:panelGrid columns="1" style="background-color:#F5F3F3" border="1" cellpadding="5" cellspacing="5">
+					<h:panelGrid columns= "3" style="background-color:#F5F3F3" border="0" cellpadding="5" cellspacing="0" class="alignmentCenter">
+					
+					<f:facet name="header"><h:graphicImage url="/images/LogIn.JPG"/></f:facet>
+					
+					<br/>
+					<h:inputText validator="#{loginValidator.validateLoginName}" value = "Username" id="username" style="width: 200px; height: 20px"/>
+					<h:message class="error" for="username"/>
+					
+					<br/>
+					<h:inputSecret redisplay= "true" validator="#{loginValidator.validatePassword}" value ="Password" id="password" style="width: 200px; height: 20px"/>
+					<h:message class="error" for="password"/>
+					
+					<h:commandButton action="#{loginHandler.signUpButton}" immediate="true" value="Signup" style="width: 80px; margin: 20px 4px 4px 4px; background-color: #2E2E2E; color: #F5F3F3"/>
+					<br/>
+					<h:commandButton action="#{loginHandler.loginButton}" value="Login" style="width: 80px; margin: 20px 4px 4px 4px; background-color: #2E2E2E; color: #F5F3F3"/>
+					
+					</h:panelGrid>
+				</h:panelGrid>
+			</div>
+	   	</h:form>
+</body>
+</html>
+   	

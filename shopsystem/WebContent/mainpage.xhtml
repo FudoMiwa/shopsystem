@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+	<title>mainpage</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+<div class="alles">
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Kopfzeile Logo............................................................... -->
+
+
+	<div id="header">
+		<h:graphicImage url="/images/Logo.png"/>
+	</div>
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Kopfzeile Buttons............................................................ -->
+
+
+	<div id="kopfzeile">
+		<h:form>
+			<p>		
+				<h:commandButton style="padding-left: 50px" image="/images/homebutton.png" action="#{mainpageHandler.homeButton}" immediate="true"/>
+				<h:commandButton style="padding-left: 1000px" image="/images/warenkorb.png"  action="#{mainpageHandler.shoppingCartButton}" immediate="true"/>
+				#{mainpageHandler.totalCartSize} Artikel im Warenkorb
+			</p>
+		</h:form>
+	</div>
+
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Menue Kategorien............................................................. -->
+
+
+<div id="menu">
+	<ul>
+	<li><h2>Kategorie</h2></li>
+	<li>&nbsp;</li>
+	</ul>
+
+
+	<div class="textbox">
+		<h:form>
+			<ul>
+				<li><h:commandLink value="Historische Romane" action="#{mainpageHandler.categoryLink('historischer roman')}" /></li>
+				<li><h:commandLink value="Fachbücher" action="#{mainpageHandler.categoryLink('fachbuch')}"/></li>
+				<li><h:commandLink value="Krimis" action="#{mainpageHandler.categoryLink('krimi')}"/></li>
+				<li><h:commandLink value="Science Fiction" action="#{mainpageHandler.categoryLink('science fiction')}"/></li>
+			</ul>
+		</h:form>
+	</div>
+</div>
+
+
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Hauptseite Ansicht........................................................... -->
+
+	<div id="content">
+		<h:graphicImage url="/images/home.png"/>
+	</div>
+
+
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Fußzeile..................................................................... -->
+
+
+	<div id="fuss">
+		<a href="#">Impressum</a> ::: <a href="#">Kontakt</a> ::: <a href="#">Home</a> ::: <a href="#">Sitemap</a>
+	</div>
+
+</div>
+</body>
+</html>
