@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+	<title>Checkout</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+   
+<body style="background-color:#2E2E2E">
+	<h:graphicImage url="/images/Logo.png"/>
+		<h:form>
+			<div class="distanceBox">
+				<h:panelGrid columns="1" style="background-color:#F5F3F3" border="1" cellpadding="5" cellspacing="0">
+					<h:panelGrid columns= "2" style="background-color:#F5F3F3" border="0" cellpadding="5" cellspacing="0" class="alignmentCenter">
+					
+						<f:facet name="header"><h:graphicImage url="/images/checkout.JPG"/></f:facet>
+						
+						<h:outputText style="font-weight:bold; font-size:15px; font-color:#000000" value="Vorname:"/>
+						<h:inputText value ="#{checkoutHandler.kunde.vorname}" id="firstName" required="true" style="width: 200px; height: 20px">
+							<f:validateRegex pattern="[a-zA-Z]+"/>
+						</h:inputText>
+						
+						<h:outputText />
+						<h:message class="errofin" for="firstName" style="color:red"/>
+						
+						<h:outputText style="font-weight:bold; font-size:15px; font-color:#000000" value="Nachname:"/>
+						<h:inputText value ="#{checkoutHandler.kunde.name}" id="lastName"  required="true" style="width: 200px; height: 20px"/>
+						
+						<h:outputText />
+						<h:message class="error" for="lastName" style="color:red"/>
+						
+						<h:outputText style="font-weight:bold; font-size:15px; font-color:#000000" value="Strasse, Nummer:"/>
+						<h:inputText value ="#{checkoutHandler.kunde.strasse}" id="street" style="width: 200px; height: 20px"/>
+						
+						<h:outputText />
+						<h:message class="error" for="street" style="color:red"/>
+						
+						<h:outputText style="font-weight:bold; font-size:15px; font-color:#000000" value="Postleitzahl:"/>
+						<h:inputText value ="#{checkoutHandler.kunde.plz}" id="postcode" validator="#{checkoutValidator.validatePLZ}"  required="true" style="width: 200px; height: 20px"/>
+						
+						<h:outputText />
+						<h:message class="error" for="postcode" style="color:red"/>
+					
+						<h:outputText style="font-weight:bold; font-size:15px; font-color:#000000" value="Ort:"/>
+						<h:inputText value ="#{checkoutHandler.kunde.ort}" id="city"  required="true" style="width: 200px; height: 20px"/>
+						
+						<h:outputText />
+						<h:message class="error" for="city" style="color:red"/>
+						
+						<h:outputText/><h:outputText/><h:outputText/><h:outputText/>
+						
+					</h:panelGrid>
+					
+						
+					<h:panelGrid columns= "2" style="background-color:#F5F3F3" border="0" cellpadding="5" cellspacing="0" class="alignmentCenter">
+						
+						<h:outputText style="font-weight:bold; font-size:15px; font-color:#000000" value="Zahlungsart:"/>
+						<h:selectOneMenu id="zahlungsarten" value="#{checkoutHandler.zahlungsart}">
+						  <f:selectItem
+						    itemValue="MasterCard" itemLabel="MasterCard"/>
+						  <f:selectItem 
+						    itemValue="VisaCard" itemLabel="Visa"/>
+						  <f:selectItem 
+						    itemValue="AmericanExpress" itemLabel="American Express"/>
+						  <f:selectItem 
+						    itemValue="DinersClub" itemLabel="Diners Club"/>
+						</h:selectOneMenu>
+						
+						<h:outputText style="font-weight:bold; font-size:15px; font-color:#000000" value="Kreditkartennummer:"/>
+						<h:inputText value ="#{checkoutHandler.kunde.kartennr}" id="creditCardNumber" validator="#{checkoutValidator.validateKreditkarte}" required="true" style="width: 200px; height: 20px"/>
+
+						<h:outputText />
+						<h:message class="error" for="creditCardNumber" style="color:red"/>
+						
+						<h:outputText/><h:outputText/>
+						
+						<h:outputText style="font-weight:bold; font-size:20px; font-color:#000000" value="Gültig bis:"/>
+						<h:outputText/>
+						
+						<h:panelGroup>
+						<h:selectOneMenu id="months" value="#{checkoutHandler.month}">
+						  <f:selectItem
+						    itemValue="01" itemLabel="Januar"/>
+						  <f:selectItem 
+						    itemValue="02" itemLabel="Februar"/>
+						  <f:selectItem 
+						    itemValue="03" itemLabel="M&auml;rz"/>
+						  <f:selectItem 
+						    itemValue="04" itemLabel="April"/>
+						  <f:selectItem 
+						    itemValue="05" itemLabel="Mai"/>
+						  <f:selectItem 
+						    itemValue="06" itemLabel="Juni"/>
+						  <f:selectItem 
+						    itemValue="07" itemLabel="Juli"/>
+						  <f:selectItem 
+						    itemValue="08" itemLabel="August"/>
+						  <f:selectItem 
+						    itemValue="09" itemLabel="September"/>
+						  <f:selectItem 
+						    itemValue="10" itemLabel="Oktober"/>
+						  <f:selectItem 
+						    itemValue="11" itemLabel="November"/>
+						  <f:selectItem 
+						    itemValue="12" itemLabel="Dezember"/>
+						</h:selectOneMenu>
+						<h:selectOneMenu id="years"
+						  value="#{checkoutHandler.year}">
+						  <f:selectItem
+						    itemValue="13" itemLabel="2013"/>
+						  <f:selectItem 
+						    itemValue="14" itemLabel="2014"/>
+						  <f:selectItem 
+						    itemValue="15" itemLabel="2015"/>
+						  <f:selectItem 
+						    itemValue="16" itemLabel="2016"/>
+						  <f:selectItem 
+						    itemValue="17" itemLabel="2017"/>
+						  <f:selectItem 
+						    itemValue="18" itemLabel="2018"/>
+						  <f:selectItem 
+						    itemValue="19" itemLabel="2019"/>
+						  <f:selectItem 
+						    itemValue="20" itemLabel="2020"/>
+						  <f:selectItem 
+						    itemValue="21" itemLabel="2021"/>
+						  <f:selectItem 
+						    itemValue="22" itemLabel="2022"/>
+						  <f:selectItem 
+						    itemValue="23" itemLabel="2023"/>
+						  <f:selectItem 
+						    itemValue="24" itemLabel="2024"/>
+						</h:selectOneMenu>
+						</h:panelGroup>
+
+						<h:commandButton action="#{checkoutHandler.orderButton}" value="Weiter" style="width: 80px; margin: 20px 4px 4px 4px; background-color: #2E2E2E; color: #F5F3F3"/>
+						
+						
+					</h:panelGrid>
+				</h:panelGrid>
+			</div>
+	   	</h:form>
+</body>
+</html>

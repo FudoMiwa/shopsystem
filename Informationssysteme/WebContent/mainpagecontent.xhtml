@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <h:body>
+      <ui:composition template="/templates/template.xhtml">
+      <ui:define name="content">
+        
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Inhalt Hauptansicht (Mainpagecontent)........................................ -->
+         
+  
+    <div id="content">
+	<h:form>
+		<h:panelGrid columns= "1" border="0">
+			<ui:repeat value="#{mainpageHandler.books}" var="book">
+				<h:panelGrid columns= "3"  border="0" columnClasses="tableWidth">
+					
+					<h:panelGrid columns= "1"  border="1" cellpadding="5" >					
+						<h:graphicImage url= "#{book.bild}"/>
+					</h:panelGrid>								
+							
+					<h:panelGrid columns= "1"  border="1" cellpadding="5" columnClasses="tableWidth">					
+						<f:facet name="header">#{book.bezeichnung}</f:facet>
+						<h:outputText style="font-size: 12px" value="von #{book.autor}"/>
+						<h:outputText value="ISBN #{book.isbn}"/>
+					</h:panelGrid>
+							
+					<h:panelGrid columns= "1"  border="1" cellpadding="5" columnClasses="tableWidth">					
+						Preis: <h:outputText value="#{book.preis}"><f:convertNumber currencySymbol="EUR" groupingUsed="true" maxFractionDigits="2" type="currency" /></h:outputText>
+							<h:commandLink value="Detail" action="#{mainpageHandler.detailLink}"/>
+					</h:panelGrid>	
+													
+				</h:panelGrid>
+			</ui:repeat>
+		</h:panelGrid>
+	</h:form>
+</div>
+    
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Ende Hauptansicht............................................................ -->
+    		
+
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>
+

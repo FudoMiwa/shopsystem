@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">://java.sun.com/jsf/facelets">
+  <h:body>
+      <ui:composition template="/templates/template.xhtml">
+      <ui:define name="content">
+        
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Inhalt Hauptansicht (Detailbook)............................................. -->
+         
+  
+<div id="content">
+	<h:form>
+		<h:panelGrid columns= "1" border="0">
+				<h:panelGrid columns= "3"  border="0" columnClasses="tableWidth">
+					<h:panelGrid columns= "1"  border="1" cellpadding="5" >					
+						<h:graphicImage url= "#{mainpageHandler.buch.bild}"/>
+					</h:panelGrid>								
+							
+					<h:panelGrid columns= "1"  border="1" cellpadding="5" columnClasses="tableDetailSite">					
+						<h:outputText style="font-size:18pt" value="#{mainpageHandler.buch.bezeichnung}"/>
+						<h:outputText style="font-size: 12px" value="von #{mainpageHandler.buch.autor}"/>
+						<h:outputText style="font-size:15pt; align:justify" value="#{mainpageHandler.buch.beschreibung}"/>
+						<h:outputText value="ISBN #{mainpageHandler.buch.isbn}"/>
+					</h:panelGrid>
+							
+					<h:panelGrid columns= "1"  border="1" cellpadding="5" columnClasses="tableWidth">					
+						Preis: <h:outputText value="#{mainpageHandler.buch.preis}"><f:convertNumber currencySymbol="EUR" groupingUsed="true" maxFractionDigits="2" type="currency" /></h:outputText>
+							 <h:panelGroup>Menge: <h:inputText value="#{shoppingCartHandler.quantity}" id="quantityBook"><f:convertNumber integerOnly="true" type="number" /> </h:inputText>
+							 	<h:message class="error" for="quantityBook" style="color:red"/>
+							 </h:panelGroup> 
+							<h:commandButton style="padding-left: 50px" image="/images/addwarenkorb.png" action="#{shoppingCartHandler.addToCartButton(mainpageHandler.buch.id)}"/>
+					</h:panelGrid>										
+				</h:panelGrid>
+		</h:panelGrid>
+	</h:form>
+</div>
+    
+<!-- ...................................................................................................................... -->
+<!-- ...................................................................................................................... -->
+<!-- .........................................Ende Hauptansicht............................................................ -->
+    		
+
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>
+
