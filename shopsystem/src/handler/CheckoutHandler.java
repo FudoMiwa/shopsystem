@@ -23,6 +23,11 @@ public class CheckoutHandler {
 		return "/end.xhtml";
 	}
 	
+	public String confirmationButton(){
+		return "/confirmation.xhtml";
+	}
+	
+	
 	public void setCustomer(Customer bean){
 		customer = bean;
 	}

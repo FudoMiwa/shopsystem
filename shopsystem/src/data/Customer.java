@@ -46,6 +46,10 @@ public class Customer {
 		Database.setCustomerAttribute(customerID, "`Karten-Nr.`", value);
 	}
 	
+	public void setPaymentmethod(String value){
+		Database.setCustomerAttribute(customerID, "Zahlungsart", value);
+	}
+	
 	public void setValidThroughMonth(String value){
 		validThrough = value +".";
 	}
@@ -89,6 +93,10 @@ public class Customer {
 	
 	public String getCreditCardNumber(){
 		return Database.getCustomerAttribute(customerID, "`Karten-Nr.`");
+	}
+	
+	public String getPaymentmethod(){
+		return Database.getCustomerAttribute(customerID, "Zahlungsart");
 	}
 	
 	private String getValidThrough(){

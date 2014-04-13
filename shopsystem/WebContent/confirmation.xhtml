@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+	<title>Checkout</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+   
+<body style="background-color:#2E2E2E">
+	<h:graphicImage url="/images/Logo.png"/>
+		<div class="distanceBox">
+			<h:form>												
+				<h:panelGrid columns="1" style="background-color:#F5F3F3" border="0" cellpadding="5" cellspacing="5">
+				<h:graphicImage url="/images/confirmation.JPG"/>	   
+					<hr/>	
+					<h:outputText style="font-weight:bold; font-size:25px; font-color:#000000" value="Lieferadresse"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="#{customer.firstName} #{customer.lastName}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="#{customer.street}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="#{customer.postcode} #{customer.city}"/>
+					<hr/>
+					<h:outputText style="font-weight:bold; font-size:25px; font-color:#000000" value="Zahlungsinformationen"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="Zahlungsart: #{customer.paymentmethod}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="Kreditkartennummer: #{customer.creditCardNumber}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="Gültigkeit: #{customer.validThroughMonth}/#{customer.validThroughYear}"/>
+					<hr/>
+					
+					<h:outputText style="font-weight:bold; font-size:25px; font-color:#000000" value="Bestellung:"/>
+					<ui:repeat value="#{shoppingCartHandler.cartContent}" var="cart">		
+					   	<h:panelGrid columns= "4"  border="0" cellpadding="5" cellspacing="0" columnClasses="tableWidth" >	
+					   			
+					   		<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
+						   		<h:graphicImage url="#{cart.book.pictureURL}"/>
+							</h:panelGrid>
+								
+					   		<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">
+							<f:facet name ="header"> #{cart.book.title} </f:facet>
+								<h:outputText style="font-size: 12px" value="von #{cart.book.author}"/>
+					   		</h:panelGrid>
+							
+							<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">	
+								<h:outputText value="#{cart.book.cost}">
+								<f:convertNumber currencySymbol="EUR" groupingUsed="true" maxFractionDigits="2" type="currency" /></h:outputText>
+						   	</h:panelGrid>	
+								
+							<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">
+								Menge					
+								<h:outputText value="#{cart.quantity}"/> 
+							</h:panelGrid>			
+						</h:panelGrid>			
+					</ui:repeat>
+					<h:panelGrid columns="4" style="background-color:#F5F3F3" border="0" cellpadding="10" cellspacing="10">
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText style="font-size:15px; font-weight:bold" value="Gesamtpreis:"/>
+						<h:outputText style="font-size:15px; font-weight:bold" value="#{shoppingCartHandler.totalCost}">
+							<f:convertNumber currencySymbol="EUR" groupingUsed="true" maxFractionDigits="2" type="currency" />
+						</h:outputText>
+						<h:outputText/>
+					</h:panelGrid>	
+				</h:panelGrid> 	
+					
+				<h:panelGrid columns="2">
+					<h:commandButton action="#{checkoutHandler.orderButton}" value="Bestellen" style="width: 80px; margin: 20px 4px 4px 4px; background-color: #2E2E2E; color: #F5F3F3"/>
+				</h:panelGrid>		
+			</h:form>
+		
+		</div>
+</body>
+</html>

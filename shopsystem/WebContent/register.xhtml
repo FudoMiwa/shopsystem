@@ -34,15 +34,34 @@
 						<h:outputText/>
 						<h:outputText/>
 						
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText/>
+						<h:outputText/>
+						
 						<h:outputLabel style="font-weight:bold; font-size:25px">Zahlungsart:</h:outputLabel>
 						<h:outputText/>
-						<h:outputLabel style="font-weight:bold; font-size:25px; font-style:italic">Kreditkarte</h:outputLabel>
+						<h:selectOneMenu id="paymentmethod" value="zahlungsart">
+						  <f:selectItem
+						    itemValue="MasterCard" itemLabel="MasterCard"/>
+						  <f:selectItem 
+						    itemValue="VisaCard" itemLabel="Visa"/>
+						  <f:selectItem 
+						    itemValue="AmericanExpress" itemLabel="American Express"/>
+						  <f:selectItem 
+						    itemValue="DinersClub" itemLabel="Diners Club"/>
+						</h:selectOneMenu>
 						<h:outputText/>
 						
+						<h:outputText/><h:outputText/><h:outputText/><h:outputText/>
 						
+						<h:outputLabel style="font-weight:bold; font-size:20px">Kartennummer:</h:outputLabel>
+						<h:outputText/>
 						<h:inputText value = "Kreditkartennummer" id="creditCardNumber" style="width: 200px; height: 20px"/>
 						<h:message class="error" for="creditCardNumber"/>
 						
+						<h:outputText/>
+						<h:outputText/>
 						<h:outputText/>
 						<h:outputText/>
 						
@@ -53,29 +72,29 @@
 						<h:selectOneMenu id="months"
 						  value="apple">
 						  <f:selectItem
-						    itemValue="january" itemLabel="Januar"/>
+						    itemValue="Januar" itemLabel="Januar"/>
 						  <f:selectItem 
-						    itemValue="february" itemLabel="Februar"/>
+						    itemValue="Februar" itemLabel="Februar"/>
 						  <f:selectItem 
-						    itemValue="march" itemLabel="M&auml;rz"/>
+						    itemValue="M&auml;rz" itemLabel="M&auml;rz"/>
 						  <f:selectItem 
-						    itemValue="april" itemLabel="April"/>
+						    itemValue="April" itemLabel="April"/>
 						  <f:selectItem 
-						    itemValue="may" itemLabel="Mai"/>
+						    itemValue="Mai" itemLabel="Mai"/>
 						  <f:selectItem 
-						    itemValue="june" itemLabel="Juni"/>
+						    itemValue="Juni" itemLabel="Juni"/>
 						  <f:selectItem 
-						    itemValue="july" itemLabel="Juli"/>
+						    itemValue="Juli" itemLabel="Juli"/>
 						  <f:selectItem 
-						    itemValue="august" itemLabel="August"/>
+						    itemValue="August" itemLabel="August"/>
 						  <f:selectItem 
-						    itemValue="september" itemLabel="September"/>
+						    itemValue="September" itemLabel="September"/>
 						  <f:selectItem 
-						    itemValue="october" itemLabel="Oktober"/>
+						    itemValue="Oktober" itemLabel="Oktober"/>
 						  <f:selectItem 
-						    itemValue="november" itemLabel="November"/>
+						    itemValue="November" itemLabel="November"/>
 						  <f:selectItem 
-						    itemValue="december" itemLabel="Dezember"/>
+						    itemValue="Dezember" itemLabel="Dezember"/>
 						</h:selectOneMenu>
 						<h:selectOneMenu id="years"
 						  value="apple">
@@ -106,10 +125,10 @@
 						</h:selectOneMenu>
 						</h:panelGroup>
 						
-						<h:outputText/>
-						<h:outputText/>
-						<h:outputText/>
-						<h:outputText/>
+						<h:outputText/><h:outputText/>
+						<h:outputText/><h:outputText/>
+						<h:outputText/><h:outputText/>
+						<h:outputText/><h:outputText/>
 						<h:outputText/>
 										
 						<h:inputText validator="#{signUpValidator.validateLoginName}" value = "Login Name" id="loginName" style="width: 200px; height: 20px"/>
