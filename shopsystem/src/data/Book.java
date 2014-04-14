@@ -1,6 +1,13 @@
 package data;
 
-public class Book {
+import java.io.Serializable;
+
+import database.Database;
+import database.DatabaseClient;
+
+public class Book implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private String id;
 	private String description;
 	private String publisher;
@@ -14,14 +21,23 @@ public class Book {
 	
 	public Book(String bookID){
 		id = bookID;
-		description = (String) Database.getBookAttribute(bookID, "Beschreibung");
-		publisher = (String) Database.getBookAttribute(bookID, "Verlag");
-		pictureURL = (String) Database.getBookAttribute(bookID, "Bild");
-		cost = (double) Database.getBookAttribute(bookID, "Preis");
-		title = (String) Database.getBookAttribute(bookID, "Bezeichnung");
-		category = (String) Database.getBookAttribute(bookID, "Warengruppe");
-		author = (String) Database.getBookAttribute(bookID, "Autor");
-		isbn = (String) Database.getBookAttribute(bookID, "ISBN");
+		
+		try{
+			Database database = DatabaseClient.getStub();
+			
+			description = (String) database.getBookAttribute(bookID, "Beschreibung");
+			publisher = (String) database.getBookAttribute(bookID, "Verlag");
+			pictureURL = (String) database.getBookAttribute(bookID, "Bild");
+			cost = (double) database.getBookAttribute(bookID, "Preis");
+			title = (String) database.getBookAttribute(bookID, "Bezeichnung");
+			category = (String) database.getBookAttribute(bookID, "Warengruppe");
+			author = (String) database.getBookAttribute(bookID, "Autor");
+			isbn = (String) database.getBookAttribute(bookID, "ISBN");
+		}catch(Exception e){
+			System.err.println("Book exception:");
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override

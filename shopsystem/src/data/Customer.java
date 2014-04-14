@@ -1,11 +1,17 @@
 package data;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import database.DatabaseClient;
+
 @SessionScoped
 @ManagedBean
-public class Customer {
+public class Customer implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String customerID;
 	private String validThrough;
 	
@@ -23,27 +29,51 @@ public class Customer {
 	}
 
 	public void setCustomerID(String loginName) {
-		customerID = Database.getCustomerID(loginName);
+		try {
+			customerID = DatabaseClient.getStub().getCustomerID(loginName);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setLastName(String value){
-		Database.setCustomerAttribute(customerID, "Nachname", value);
+		try {
+			DatabaseClient.getStub().setCustomerAttribute(customerID, "Name", value);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setPostcode(String value){
-		Database.setCustomerAttribute(customerID, "PLZ", value);
+		try {
+			DatabaseClient.getStub().setCustomerAttribute(customerID, "PLZ", value);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setCity(String value){
-		Database.setCustomerAttribute(customerID, "Ort", value);
+		try {
+			DatabaseClient.getStub().setCustomerAttribute(customerID, "Ort", value);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setStreet(String value){
-		Database.setCustomerAttribute(customerID, "Strasse", value);
+		try {
+			DatabaseClient.getStub().setCustomerAttribute(customerID, "Strasse", value);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setCreditCardNumber(String value){
-		Database.setCustomerAttribute(customerID, "`Karten-Nr.`", value);
+		try {
+			DatabaseClient.getStub().setCustomerAttribute(customerID, "`Karten-Nr.`", value);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setValidThroughMonth(String value){
@@ -52,47 +82,103 @@ public class Customer {
 	
 	public void setValidThroughYear(String value){
 		validThrough += value;
-		Database.setCustomerAttribute(customerID, "Gueltig_bis", validThrough);
+		try {
+			DatabaseClient.getStub().setCustomerAttribute(customerID, "Gueltig_bis", validThrough);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setFirstName(String value){
-		Database.setCustomerAttribute(customerID, "Vorname", value);
+		try {
+			DatabaseClient.getStub().setCustomerAttribute(customerID, "Vorname", value);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getLoginName(){
-		return Database.getCustomerAttribute(customerID, "Login");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Login");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public String getPassword(){
-		return Database.getCustomerAttribute(customerID, "Password");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Password");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public String getFirstName(){
-		return Database.getCustomerAttribute(customerID, "Vorname");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Vorname");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public String getLastName(){
-		return Database.getCustomerAttribute(customerID, "Name");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Name");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public String getPostcode(){
-		return Database.getCustomerAttribute(customerID, "PLZ");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "PLZ");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public String getCity(){
-		return Database.getCustomerAttribute(customerID, "Ort");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Ort");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public String getStreet(){
-		return Database.getCustomerAttribute(customerID, "Strasse");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Strasse");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public String getCreditCardNumber(){
-		return Database.getCustomerAttribute(customerID, "`Karten-Nr.`");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "`Karten-Nr.`");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	private String getValidThrough(){
-		return Database.getCustomerAttribute(customerID, "Gueltig_bis");
+		try {
+			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Gueltig_bis");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public String getValidThroughMonth(){

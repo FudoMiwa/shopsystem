@@ -1,5 +1,6 @@
 package validator;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,7 +10,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
-import data.Database;
+import com.sun.rowset.*;
+
+import database.DatabaseClient;
 
 @ManagedBean
 public class LoginValidator {
@@ -17,21 +20,30 @@ public class LoginValidator {
 	
 	public void validateLoginName(FacesContext context, UIComponent component, Object  value) throws ValidatorException{
 		login = (String) value;
-		ResultSet rs = Database.executeQuery("SELECT Login FROM kunde WHERE Login = '"+ login +"'");
+		CachedRowSetImpl rs = null;
 		
 		try {
+			rs = new CachedRowSetImpl();
+			rs.populate(DatabaseClient.getStub().executeQuery("SELECT Login FROM kunde WHERE Login = '"+ login +"'"));
+			
 			if(!rs.next())
 				throw new ValidatorException(new FacesMessage("Username existiert nicht"));
-			
-		} catch (SQLException e) {e.printStackTrace();}
+		} catch (Exception e) {
+			System.err.println("LoginValidator exception:");
+			e.printStackTrace();
+		} 
 	}
 	
 	public void validatePassword(FacesContext context, UIComponent component, Object  value) throws ValidatorException{
-		ResultSet rs = Database.executeQuery("SELECT Login, Password FROM kunde WHERE Login = '"+ login +"' AND Password = '"+ (String) value +"'");
+		ResultSet rs = null;
 		
-		try{
+		try {
+			rs = DatabaseClient.getStub().executeQuery("SELECT Login, Password FROM kunde WHERE Login = '"+ login +"' AND Password = '"+ (String) value +"'");
+			
 			if(!rs.next())
 				throw new ValidatorException(new FacesMessage("Username und Passwort stimmen nicht \u00FCberein"));
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
 		}catch(SQLException e){e.printStackTrace();}
 	}
 }

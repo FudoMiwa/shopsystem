@@ -1,5 +1,7 @@
 package handler;
 
+import java.rmi.RemoteException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -7,8 +9,8 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 import data.Book;
-import data.Database;
 import data.ShoppingCart;
+import database.DatabaseClient;
 
 @ManagedBean
 @SessionScoped
@@ -27,7 +29,11 @@ public class MainpageHandler {
 	}
 	
 	public String categoryLink(String selectedCategory){
-		bookModel = new ListDataModel<Book>(Database.getBooks(selectedCategory));
+		try {
+			bookModel = new ListDataModel<Book>(DatabaseClient.getStub().getBooks(selectedCategory));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return "/mainpagecontent.xhtml";
 	}
 	

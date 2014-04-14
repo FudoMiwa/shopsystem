@@ -1,12 +1,14 @@
 package handler;
 
+import java.rmi.RemoteException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import data.Customer;
-import data.Database;
 import data.ShoppingCart;
+import database.DatabaseClient;
 
 @SessionScoped
 @ManagedBean
@@ -19,7 +21,11 @@ public class CheckoutHandler {
 	private Customer customer;
 	
 	public String orderButton(){
-		Database.recordNewOrder(customer, shoppingCart);
+		try {
+			DatabaseClient.getStub().recordNewOrder(customer, shoppingCart);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return "/end.xhtml";
 	}
 	

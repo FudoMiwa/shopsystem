@@ -1,5 +1,6 @@
 package validator;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,7 +10,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
-import data.Database;
+import database.DatabaseClient;
+
 
 /**
  * Handles validation for the signup-window.
@@ -26,7 +28,13 @@ public class SignUpValidator {
 	 */
 	public void validateLoginName(FacesContext context, UIComponent component, Object  value) throws ValidatorException{
 		String input = (String) value;
-		ResultSet rs = Database.executeQuery("SELECT Login FROM kunde WHERE Login = '"+ input +"'");
+		ResultSet rs = null;
+		
+		try {
+			rs = DatabaseClient.getStub().executeQuery("SELECT Login FROM kunde WHERE Login = '"+ input +"'");
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		
 		if(input.length() < 5)
 			throw new ValidatorException(new FacesMessage("Loginname muss mindestens 5 Zeichen enthalten"));

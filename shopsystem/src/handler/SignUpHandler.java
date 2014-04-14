@@ -1,5 +1,7 @@
 package handler;
 
+import java.rmi.RemoteException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.component.html.HtmlInputText;
@@ -7,8 +9,8 @@ import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.component.html.HtmlSelectOneMenu;
 
 import data.Customer;
-import data.Database;
 import data.Tools;
+import database.DatabaseClient;
 
 /**
  * Handler for signup-window.
@@ -50,7 +52,11 @@ public class SignUpHandler {
 		validThrough += (String) ((HtmlSelectOneMenu) Tools.dfsComponent("years")).getValue();
 		customerData[9] = validThrough;
 		
-		Database.recordNewCustomer(customerData);
+		try {
+			DatabaseClient.getStub().recordNewCustomer(customerData);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
