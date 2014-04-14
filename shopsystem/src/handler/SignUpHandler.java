@@ -10,7 +10,7 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 
 import data.Customer;
 import data.Tools;
-import database.DatabaseClient;
+import database.DBUtil;
 
 /**
  * Handler for signup-window.
@@ -53,7 +53,7 @@ public class SignUpHandler {
 		customerData[9] = validThrough;
 		
 		try {
-			DatabaseClient.getStub().recordNewCustomer(customerData);
+			DBUtil.getStub().recordNewCustomer(customerData);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

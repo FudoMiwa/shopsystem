@@ -10,7 +10,7 @@ import javax.faces.model.ListDataModel;
 
 import data.Book;
 import data.ShoppingCart;
-import database.DatabaseClient;
+import database.DBUtil;
 
 @ManagedBean
 @SessionScoped
@@ -30,7 +30,7 @@ public class MainpageHandler {
 	
 	public String categoryLink(String selectedCategory){
 		try {
-			bookModel = new ListDataModel<Book>(DatabaseClient.getStub().getBooks(selectedCategory));
+			bookModel = new ListDataModel<Book>(DBUtil.getStub().getBooks(selectedCategory));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

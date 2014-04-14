@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import database.DatabaseClient;
+import database.DBUtil;
 
 @SessionScoped
 @ManagedBean
@@ -30,7 +30,7 @@ public class Customer implements Serializable{
 
 	public void setCustomerID(String loginName) {
 		try {
-			customerID = DatabaseClient.getStub().getCustomerID(loginName);
+			customerID = DBUtil.getStub().getCustomerID(loginName);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -38,7 +38,7 @@ public class Customer implements Serializable{
 	
 	public void setLastName(String value){
 		try {
-			DatabaseClient.getStub().setCustomerAttribute(customerID, "Name", value);
+			DBUtil.getStub().setCustomerAttribute(customerID, "Name", value);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class Customer implements Serializable{
 	
 	public void setPostcode(String value){
 		try {
-			DatabaseClient.getStub().setCustomerAttribute(customerID, "PLZ", value);
+			DBUtil.getStub().setCustomerAttribute(customerID, "PLZ", value);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -54,7 +54,7 @@ public class Customer implements Serializable{
 	
 	public void setCity(String value){
 		try {
-			DatabaseClient.getStub().setCustomerAttribute(customerID, "Ort", value);
+			DBUtil.getStub().setCustomerAttribute(customerID, "Ort", value);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -62,7 +62,7 @@ public class Customer implements Serializable{
 	
 	public void setStreet(String value){
 		try {
-			DatabaseClient.getStub().setCustomerAttribute(customerID, "Strasse", value);
+			DBUtil.getStub().setCustomerAttribute(customerID, "Strasse", value);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -70,7 +70,7 @@ public class Customer implements Serializable{
 	
 	public void setCreditCardNumber(String value){
 		try {
-			DatabaseClient.getStub().setCustomerAttribute(customerID, "`Karten-Nr.`", value);
+			DBUtil.getStub().setCustomerAttribute(customerID, "`Karten-Nr.`", value);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +83,7 @@ public class Customer implements Serializable{
 	public void setValidThroughYear(String value){
 		validThrough += value;
 		try {
-			DatabaseClient.getStub().setCustomerAttribute(customerID, "Gueltig_bis", validThrough);
+			DBUtil.getStub().setCustomerAttribute(customerID, "Gueltig_bis", validThrough);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -91,7 +91,7 @@ public class Customer implements Serializable{
 	
 	public void setFirstName(String value){
 		try {
-			DatabaseClient.getStub().setCustomerAttribute(customerID, "Vorname", value);
+			DBUtil.getStub().setCustomerAttribute(customerID, "Vorname", value);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -99,7 +99,7 @@ public class Customer implements Serializable{
 	
 	public String getLoginName(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Login");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "Login");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -109,7 +109,7 @@ public class Customer implements Serializable{
 	
 	public String getPassword(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Password");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "Password");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -118,7 +118,7 @@ public class Customer implements Serializable{
 	
 	public String getFirstName(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Vorname");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "Vorname");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -127,7 +127,7 @@ public class Customer implements Serializable{
 	
 	public String getLastName(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Name");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "Name");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -136,7 +136,7 @@ public class Customer implements Serializable{
 	
 	public String getPostcode(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "PLZ");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "PLZ");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -145,7 +145,7 @@ public class Customer implements Serializable{
 	
 	public String getCity(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Ort");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "Ort");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -154,7 +154,7 @@ public class Customer implements Serializable{
 	
 	public String getStreet(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Strasse");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "Strasse");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -163,7 +163,7 @@ public class Customer implements Serializable{
 	
 	public String getCreditCardNumber(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "`Karten-Nr.`");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "`Karten-Nr.`");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -173,7 +173,7 @@ public class Customer implements Serializable{
 	
 	private String getValidThrough(){
 		try {
-			return DatabaseClient.getStub().getCustomerAttribute(customerID, "Gueltig_bis");
+			return DBUtil.getStub().getCustomerAttribute(customerID, "Gueltig_bis");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

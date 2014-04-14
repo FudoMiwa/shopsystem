@@ -8,7 +8,7 @@ import javax.faces.bean.SessionScoped;
 
 import data.Customer;
 import data.ShoppingCart;
-import database.DatabaseClient;
+import database.DBUtil;
 
 @SessionScoped
 @ManagedBean
@@ -22,7 +22,7 @@ public class CheckoutHandler {
 	
 	public String orderButton(){
 		try {
-			DatabaseClient.getStub().recordNewOrder(customer, shoppingCart);
+			DBUtil.getStub().recordNewOrder(customer, shoppingCart);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

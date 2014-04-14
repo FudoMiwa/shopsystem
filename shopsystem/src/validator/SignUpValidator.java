@@ -10,7 +10,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
-import database.DatabaseClient;
+import database.DBUtil;
 
 
 /**
@@ -31,7 +31,7 @@ public class SignUpValidator {
 		ResultSet rs = null;
 		
 		try {
-			rs = DatabaseClient.getStub().executeQuery("SELECT Login FROM kunde WHERE Login = '"+ input +"'");
+			rs = DBUtil.getStub().executeQuery("SELECT Login FROM kunde WHERE Login = '"+ input +"'");
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 		}

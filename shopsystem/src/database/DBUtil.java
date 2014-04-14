@@ -3,10 +3,13 @@ package database;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class DatabaseClient{
+public class DBUtil{
 	public final static String RMI_URI = "localhost";
 	public final static String RMI_DATABASE_LOOKUPNAME = "Database";
 	
+	/**
+	 * @return Stub for Database
+	 */
 	public static Database getStub(){
 		Database database = null;
 		try{

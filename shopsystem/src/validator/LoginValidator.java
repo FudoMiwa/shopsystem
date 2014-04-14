@@ -12,7 +12,7 @@ import javax.faces.validator.ValidatorException;
 
 import com.sun.rowset.*;
 
-import database.DatabaseClient;
+import database.DBUtil;
 
 @ManagedBean
 public class LoginValidator {
@@ -24,7 +24,7 @@ public class LoginValidator {
 		
 		try {
 			rs = new CachedRowSetImpl();
-			rs.populate(DatabaseClient.getStub().executeQuery("SELECT Login FROM kunde WHERE Login = '"+ login +"'"));
+			rs.populate(DBUtil.getStub().executeQuery("SELECT Login FROM kunde WHERE Login = '"+ login +"'"));
 			
 			if(!rs.next())
 				throw new ValidatorException(new FacesMessage("Username existiert nicht"));
@@ -38,7 +38,7 @@ public class LoginValidator {
 		ResultSet rs = null;
 		
 		try {
-			rs = DatabaseClient.getStub().executeQuery("SELECT Login, Password FROM kunde WHERE Login = '"+ login +"' AND Password = '"+ (String) value +"'");
+			rs = DBUtil.getStub().executeQuery("SELECT Login, Password FROM kunde WHERE Login = '"+ login +"' AND Password = '"+ (String) value +"'");
 			
 			if(!rs.next())
 				throw new ValidatorException(new FacesMessage("Username und Passwort stimmen nicht \u00FCberein"));

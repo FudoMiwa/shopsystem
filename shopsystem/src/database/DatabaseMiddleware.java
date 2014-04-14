@@ -17,7 +17,7 @@ import data.CartElement;
 import data.Customer;
 import data.ShoppingCart;
 
-public class DatabaseEngine implements Database {
+public class DatabaseMiddleware implements Database {
 
 	private static Connection connection;
 	
@@ -143,7 +143,7 @@ public class DatabaseEngine implements Database {
 		
 		try{
 			String name = "Database";
-			Database engine = new DatabaseEngine();
+			Database engine = new DatabaseMiddleware();
 			Database stub = (Database) UnicastRemoteObject.exportObject(engine, 0);
 			Registry reg = LocateRegistry.getRegistry();
 			reg.rebind(name, stub);

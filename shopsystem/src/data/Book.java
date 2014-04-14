@@ -3,7 +3,7 @@ package data;
 import java.io.Serializable;
 
 import database.Database;
-import database.DatabaseClient;
+import database.DBUtil;
 
 public class Book implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class Book implements Serializable{
 		id = bookID;
 		
 		try{
-			Database database = DatabaseClient.getStub();
+			Database database = DBUtil.getStub();
 			
 			description = (String) database.getBookAttribute(bookID, "Beschreibung");
 			publisher = (String) database.getBookAttribute(bookID, "Verlag");
