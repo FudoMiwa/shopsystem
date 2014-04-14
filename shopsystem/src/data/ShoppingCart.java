@@ -1,5 +1,6 @@
 package data;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +9,10 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class ShoppingCart {
+public class ShoppingCart implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private List<CartElement> books = new LinkedList<>();
 	private double totalCost;
 	private int totalSize; //Amount of all items in shopping-cart

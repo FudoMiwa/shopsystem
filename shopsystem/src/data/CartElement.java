@@ -1,6 +1,11 @@
 package data;
 
-public class CartElement{
+import java.io.Serializable;
+
+public class CartElement implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	Book book;
 	int quantity;
 	
