@@ -44,7 +44,7 @@ public class SignUpHandler {
 		customerData[4] = (String) ((HtmlInputText) Tools.dfsComponent("postcode")).getValue();
 		customerData[5] = (String) ((HtmlInputText) Tools.dfsComponent("city")).getValue();
 		customerData[6] = (String) ((HtmlInputText) Tools.dfsComponent("street")).getValue();
-		customerData[7] = "creditCard";
+		customerData[7] = (String) ((HtmlSelectOneMenu) Tools.dfsComponent("paymentmethod")).getValue();
 		customerData[8] = (String) ((HtmlInputText) Tools.dfsComponent("creditCardNumber")).getValue();
 		
 		String validThrough = (String) ((HtmlSelectOneMenu) Tools.dfsComponent("months")).getValue();

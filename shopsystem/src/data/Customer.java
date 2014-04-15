@@ -76,6 +76,12 @@ public class Customer implements Serializable{
 		}
 	}
 	
+	public void setPaymentmethod(String value){
+		try {
+			DBUtil.getStub().setCustomerAttribute(customerID, "Zahlungsart", value);
+		} catch (RemoteException e) {e.printStackTrace();}
+	}
+	
 	public void setValidThroughMonth(String value){
 		validThrough = value +".";
 	}
@@ -169,6 +175,15 @@ public class Customer implements Serializable{
 		}
 		
 		return null;
+	}
+	
+	public String getPaymentmethod(){
+		try {
+			return DBUtil.getStub().getCustomerAttribute(customerID, "Zahlungsart");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	private String getValidThrough(){

@@ -17,41 +17,42 @@
 				<h:graphicImage url="/images/confirmation.JPG"/>	   
 					<hr/>	
 					<h:outputText style="font-weight:bold; font-size:25px; font-color:#000000" value="Lieferadresse"/>
-					<h:outputText style="font-size:15px; font-color:#000000" value="#{checkoutHandler.kunde.vorname} #{checkoutHandler.kunde.name}"/>
-					<h:outputText style="font-size:15px; font-color:#000000" value="#{checkoutHandler.kunde.strasse}"/>
-					<h:outputText style="font-size:15px; font-color:#000000" value="#{checkoutHandler.kunde.plz} #{checkoutHandler.kunde.ort}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="#{customer.firstName} #{customer.lastName}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="#{customer.street}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="#{customer.postcode} #{customer.city}"/>
 					<hr/>
 					<h:outputText style="font-weight:bold; font-size:25px; font-color:#000000" value="Zahlungsinformationen"/>
-					<h:outputText style="font-size:15px; font-color:#000000" value="Zahlungsart: #{checkoutHandler.zahlungsart}"/>
-					<h:outputText style="font-size:15px; font-color:#000000" value="Kreditkartennummer: #{checkoutHandler.kunde.kartennr}"/>
-					<h:outputText style="font-size:15px; font-color:#000000" value="Gültigkeit: #{checkoutHandler.month}/#{checkoutHandler.year}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="Zahlungsart: #{customer.paymentmethod}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="Kreditkartennummer: #{customer.creditCardNumber}"/>
+					<h:outputText style="font-size:15px; font-color:#000000" value="Gültigkeit: #{customer.validThroughMonth}/#{customer.validThroughYear}"/>
 					<hr/>
 					
 					<h:outputText style="font-weight:bold; font-size:25px; font-color:#000000" value="Bestellung:"/>
-					<ui:repeat value="#{shoppingCartHandler.cartContent}" var="buchmodel">		
+					<ui:repeat value="#{shoppingCartHandler.cartContent}" var="cart">		
 					   	<h:panelGrid columns= "4"  border="0" cellpadding="5" cellspacing="0" columnClasses="tableWidth" >	
 					   			
 					   		<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">		   			
-						   		<h:graphicImage url="#{buchmodel.buch.bild}"/>
+						   		<h:graphicImage url="#{cart.book.pictureURL}"/>
 							</h:panelGrid>
 								
 					   		<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">
-							<f:facet name ="header"> #{buchmodel.buch.bezeichnung} </f:facet>
-								<h:outputText style="font-size: 12px" value="von #{buchmodel.buch.autor}"/>
+							<f:facet name ="header"> #{cart.book.title} </f:facet>
+								<h:outputText style="font-size: 12px" value="von #{cart.book.author}"/>
 					   		</h:panelGrid>
 							
 							<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">	
-								<h:outputText value="#{buchmodel.buch.preis}">
+								<h:outputText value="#{cart.book.cost}">
 								<f:convertNumber currencySymbol="EUR" groupingUsed="true" maxFractionDigits="2" type="currency" /></h:outputText>
 						   	</h:panelGrid>	
 								
 							<h:panelGrid columns= "1"  border="0" cellpadding="5" columnClasses="tableWidth">
 								Menge					
-								<h:outputText value="#{buchmodel.quantity}"/> 
+								<h:outputText value="#{cart.quantity}"/> 
 							</h:panelGrid>			
 						</h:panelGrid>			
 					</ui:repeat>
 					<h:panelGrid columns="4" style="background-color:#F5F3F3" border="0" cellpadding="10" cellspacing="10">
+						<h:outputText/>
 						<h:outputText/>
 						<h:outputText style="font-size:15px; font-weight:bold" value="Gesamtpreis:"/>
 						<h:outputText style="font-size:15px; font-weight:bold" value="#{shoppingCartHandler.totalCost}">
@@ -59,9 +60,10 @@
 						</h:outputText>
 						<h:outputText/>
 					</h:panelGrid>	
-				</h:panelGrid> 		
+				</h:panelGrid> 	
+					
 				<h:panelGrid columns="2">
-					<h:commandButton action="#{checkoutHandler.finalOrderButton(shoppingCartHandler.cartList)}" value="Bestellen" style="width: 80px; margin: 20px 4px 4px 4px; background-color: #2E2E2E; color: #F5F3F3"/>
+					<h:commandButton action="#{checkoutHandler.orderButton}" value="Bestellen" style="width: 80px; margin: 20px 4px 4px 4px; background-color: #2E2E2E; color: #F5F3F3"/>
 				</h:panelGrid>		
 			</h:form>
 		
