@@ -5,8 +5,7 @@ import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.util.List;
 
-import data.Customer;
-import data.ShoppingCart;
+import data.CartElement;
 
 /**
  * Interface for RMI
@@ -36,5 +35,5 @@ public interface Database extends Remote{
 	
 	public void setCustomerAttribute(String customerID, String attriName, String attriValue) throws RemoteException;
 	
-	public void recordNewOrder(Customer customer, ShoppingCart cart) throws RemoteException;
+	public void recordNewOrder(String customerID, List<CartElement> cartContent) throws RemoteException;
 }

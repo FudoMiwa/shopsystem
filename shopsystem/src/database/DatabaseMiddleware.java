@@ -14,8 +14,6 @@ import com.sun.rowset.CachedRowSetImpl;
 
 import data.Book;
 import data.CartElement;
-import data.Customer;
-import data.ShoppingCart;
 
 public class DatabaseMiddleware implements Database {
 
@@ -121,9 +119,9 @@ public class DatabaseMiddleware implements Database {
 		return ret;
 	}
 	
-	public void recordNewOrder(Customer customer, ShoppingCart cart){
-		execute("INSERT INTO bestellung VALUES(NULL,'" +customer.getCustomerID()+ "');");
-		ResultSet rs = executeQuery("SELECT ID FROM bestellung WHERE `Kunden-Nr.` = '" +customer.getCustomerID()+ "';");
+	public void recordNewOrder(String customerID, List<CartElement> cartContent){
+		execute("INSERT INTO bestellung VALUES(NULL,'" +customerID+ "');");
+		ResultSet rs = executeQuery("SELECT ID FROM bestellung WHERE `Kunden-Nr.` = '" +customerID+ "';");
 		String orderID = null;
 		
 		try {
@@ -131,7 +129,7 @@ public class DatabaseMiddleware implements Database {
 			orderID = rs.getString(1);
 		} catch (SQLException e) {e.printStackTrace();	}
 		
-		for(CartElement elem : cart.getCartContent()){
+		for(CartElement elem : cartContent){
 			String bla = "INSERT INTO position VALUES('" +orderID+ "','" +elem.getBook().getID()+ "','" +elem.getQuantity()+ "');";
 			execute(bla);
 		}

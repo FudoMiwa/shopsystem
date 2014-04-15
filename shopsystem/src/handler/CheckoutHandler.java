@@ -22,7 +22,7 @@ public class CheckoutHandler {
 	
 	public String orderButton(){
 		try {
-			DBUtil.getStub().recordNewOrder(customer, shoppingCart);
+			DBUtil.getStub().recordNewOrder(customer.getCustomerID(), shoppingCart.getCartContent());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
