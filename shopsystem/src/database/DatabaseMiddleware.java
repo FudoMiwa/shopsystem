@@ -43,6 +43,7 @@ public class DatabaseMiddleware implements Database {
 			ret.populate(getConnection().createStatement().executeQuery(query));
 		} catch (SQLException e) {e.printStackTrace();}
 		
+		System.out.println("done");
 		return ret;
 	}
 	
@@ -87,7 +88,7 @@ public class DatabaseMiddleware implements Database {
 		
 		if(connection == null){
 			try {
-				connection = DriverManager.getConnection("jdbc:mysql://localhost/amazon_light","root","java");
+				connection = DriverManager.getConnection("jdbc:mysql://192.168.178.20/amazon_light","root","java");
 			} catch (SQLException e) {e.printStackTrace();}
 		}
 		

@@ -4,7 +4,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class DBUtil{
-	public final static String RMI_URI = "localhost";
+	public final static String RMI_URI = "192.168.178.28";
 	public final static String RMI_DATABASE_LOOKUPNAME = "Database";
 	
 	/**
@@ -16,7 +16,7 @@ public class DBUtil{
 			Registry registry = LocateRegistry.getRegistry(RMI_URI);
 			database = (Database) registry.lookup(RMI_DATABASE_LOOKUPNAME);
 		}catch(Exception e){
-			System.err.println("Book exception:");
+			System.err.println("DBUtil exception:");
 			e.printStackTrace();
 		}
 		

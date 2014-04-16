@@ -13,6 +13,7 @@ import javax.faces.validator.ValidatorException;
 import com.sun.rowset.*;
 
 import database.DBUtil;
+import database.Database;
 
 @ManagedBean
 public class LoginValidator {
@@ -24,12 +25,13 @@ public class LoginValidator {
 		
 		try {
 			rs = new CachedRowSetImpl();
+			Database db = DBUtil.getStub();
 			rs.populate(DBUtil.getStub().executeQuery("SELECT Login FROM kunde WHERE Login = '"+ login +"'"));
 			
 			if(!rs.next())
 				throw new ValidatorException(new FacesMessage("Username existiert nicht"));
 		} catch (Exception e) {
-			System.err.println("LoginValidator exception:");
+			System.err.println("LoginValidator exception:"+DBUtil.getStub());
 			e.printStackTrace();
 		} 
 	}
